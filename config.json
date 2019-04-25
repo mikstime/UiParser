@@ -1,0 +1,10 @@
+[
+  {
+    "ModuleName" : "Test Module",
+    "constructor" :
+    {
+      "prototype" : "input/text",
+      "textValue" : "Temperature in celsius"
+    }
+}
+]

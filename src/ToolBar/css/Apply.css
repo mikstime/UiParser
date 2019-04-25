@@ -1,0 +1,34 @@
+.Apply .Tool-body  {
+
+    user-select: none;
+    border-bottom: 1px solid #4EB568;
+    background: #5DDC78;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 2em;
+}
+.Apply .Tool-body:hover {
+    background: #4BCC67;
+    transition: 0.1s;
+}
+.Apply .Tool-body:hover .Tool-img {
+    transition: 0.3s;
+    opacity: 0.3;
+    width: 60%;
+}
+.Apply .Tool-img {
+    margin: auto;
+    height: 100%;
+    width: 50%;
+    opacity: 0.3;
+}
+.Apply .Tool-body:active {
+    background: #33C453;
+}
+.Apply .Tool-body:active .Tool-img {
+    transition: 0.1s;
+    opacity: 0.5;
+    width: 45%;
+}
