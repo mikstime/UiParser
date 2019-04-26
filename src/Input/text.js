@@ -7,6 +7,7 @@ export default class TextInput extends React.Component {
     }
 
     render() {
+        //@TODO refactor
         return(
             <div style={{marginBottom:"5px"}}>
                 <p className="text-name">{this.props.name}

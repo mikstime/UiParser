@@ -1,0 +1,13 @@
+{
+    "ModuleName" : "Test Module",
+    "constructor" :[
+      {
+        "prototype" : "Input/text",
+        "textValue" : "Temperature in celsius"
+      },
+      {
+        "prototype" : "Input/slider",
+        "textValue" : "Test Slider"
+      }
+    ]
+}
