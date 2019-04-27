@@ -6,7 +6,7 @@ import Tool from "./Tool";
 import settingIcon from "./svg/Setting.svg"
 export default
 class ToolsHolder extends React.Component {
-
+    // eslint-disable-next-line
     constructor(props) {
         super(props)
     }

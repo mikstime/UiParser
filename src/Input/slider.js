@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react'
-import './css/slider.css'
-import './css/text.css'
+import './css/slider.sass'
+import './css/text.sass'
 export default class SliderDefault extends React.Component {
-
+    // eslint-disable-next-line
     constructor(props) {
         super(props);
     }

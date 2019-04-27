@@ -1,17 +1,11 @@
 import React from 'react';
-import './App.css';
+import './App.sass';
+
+import Header from "./header/Header";
+import uuid from 'uuid/v4';
 
 import ToolsHolder from "./ToolBar/ToolsHolder";
-import TextInput from "./Input/text";
-import Header from "./header/Header";
-import uuidv4 from 'uuid/v4';
-import SliderDefault from "./Input/slider";
-import CheckInput from "./Input/check";
-const constructors = {
-    "input/text" : TextInput,
-    "input/slider" : SliderDefault,
-    "input/check" : CheckInput
-}
+import PropHolder from "./Input/propHolder";
 class App extends React.Component {
 
     render() {
@@ -19,15 +13,20 @@ class App extends React.Component {
         const fr = [];
         for(let prop of module.constructor) {
             //@TODO change this
-            let ChosenEl = constructors[prop.prototype.toLowerCase()];
-            fr.push(<ChosenEl key={uuidv4()}name={prop.textValue}/>);
+            fr.push(
+                <PropHolder
+                    key={uuid()}
+                    descriptor={prop}
+                />);
         }
         return (
             <div className="module-holder">
 
                 <ToolsHolder/>
                 <Header text={module.ModuleName}/>
-                {fr}
+                <div className={"prop-block"}>
+                    {fr}
+                </div>
             </div>
         );
     }

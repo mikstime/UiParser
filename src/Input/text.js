@@ -1,20 +1,20 @@
 import React, {Fragment} from 'react'
-import './css/text.css'
+import './css/text.sass'
 export default class TextInput extends React.Component {
-
+    // eslint-disable-next-line
     constructor(props) {
         super(props);
     }
 
     render() {
         //@TODO refactor
+        //@TODO add about info
+        //@TODO make about toggleable
+        //@TODO replace css with sass
         return(
-            <div style={{marginBottom:"5px"}}>
-                <p className="text-name">{this.props.name}
-                </p>
+            <React.Fragment>
                 <input className="text-input" type="text"/>
-                <br/>
-            </div>
+            </React.Fragment>
         )
     }
 }

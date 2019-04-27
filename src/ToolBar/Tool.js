@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/Tool.css';
 export default class Tool extends React.Component{
-
+    // eslint-disable-next-line
     constructor(props) {
         super(props);
     }

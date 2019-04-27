@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react'
-import './css/text.css'
+import './css/text.sass'
 import './css/check.sass'
 export default class CheckInput extends React.Component {
-
+    // eslint-disable-next-line
     constructor(props) {
         super(props);
     }

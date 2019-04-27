@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import './css/Header.css'
+import './css/Header.sass'
 export default class Header extends React.Component {
 
     constructor(props) {

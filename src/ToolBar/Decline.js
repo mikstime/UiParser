@@ -6,6 +6,7 @@ import './css/Decline.css'
 // image to show as an icon
 import img from './svg/cancel.svg'
 export default class Apply extends Component {
+    // eslint-disable-next-line
     constructor(props) {
         super(props);
     }
