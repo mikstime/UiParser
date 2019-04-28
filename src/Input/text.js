@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react'
 import './css/text.sass'
+import './css/input-default.sass'
 export default class TextInput extends React.Component {
     // eslint-disable-next-line
     constructor(props) {
@@ -13,7 +14,7 @@ export default class TextInput extends React.Component {
         //@TODO replace css with sass
         return(
             <React.Fragment>
-                <input className="text-input" type="text"/>
+                <input className="input-default text-input" type="text"/>
             </React.Fragment>
         )
     }

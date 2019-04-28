@@ -1,19 +1,17 @@
+@import CONSTANTS
 .text-input
-    color: #FFF5F5
-    vertical-align: center
-    line-height: 16px
-    border-radius: 4px
-    width: calc(100% - 200px)
-    min-width: 100px
-    max-width: 40%
-    border: 1px solid #3C3C4D
-    background: #3C3C4D
-    margin: auto
-    height: 16px
-    text-indent: 7px
-    float: left
+    color: $elem-default-color
+    line-height: $def-size
+    border: none
+    border-radius: $border-rad
+    border-left: 2px solid $additional-bcolor
+    border-right: 2px solid $additional-bcolor
+    background: $additional-bcolor
+    height: $def-size
+    text-indent: $indent-default
     transition: .2s
 
 .text-input:focus 
     outline: none
-    border: 1px solid #9E1941
+    border-left: 2px solid $elem-default-bcolor
+    border-right: 2px solid $elem-default-bcolor

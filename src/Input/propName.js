@@ -13,16 +13,15 @@ export default class PropName extends React.Component{
     render() {
 
         const tags = this.props.tags || '';
-        const styles = {};
+        let styles = "prop-name";
         if(tags.includes('b'))
-            styles['fontWeight'] = 'bold';
+            styles += " prop-bold";
         if(tags.includes('h'))
-            styles['fontSize'] = '28px';
-
+            styles += " prop-high";
 
         return (
             <Fragment>
-                <p style={styles}className={"prop-name"}>
+                <p className={styles}>
                     {
                         this.props.textValue
                     }

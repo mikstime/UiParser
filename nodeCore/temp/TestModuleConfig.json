@@ -2,14 +2,15 @@
     "ModuleName" : "Temperature converter",
     "constructor" :[
       {
-        "propName" : ["Temperature", "b"],
-        "picker" : ["input/text"],
+        "picker" : ["input/slider"],
+        "propName" : ["Precision"],
         "about" : "Temperature in degrees celsius to be converted in fahrenheit\n"
       },
       {
-        "picker" : ["Input/slider", 0, 1, 2],
-        "propName" : ["Precision"],
-        "about" : "123"
+        "propName" : ["Temperature", ""],
+        "picker" : ["input/text"],
+        "about" : "Temperature in degrees celsius to be converted in fahrenheit\n"
       }
+
     ]
 }

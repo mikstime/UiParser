@@ -1,42 +1,42 @@
+@import CONSTANTS
 .about-holder
-  margin-right: 10px
-  padding: 5px
-  float: left
-  color: #7B7985
-  font-size: 14px
+  color: $additional-color
+  font-size: $sec-text-size
   max-height: 70px
-  width: calc(100% - 20px)
-  transition: .2s
+  width: 100%
+  margin-left: $indent-default
+  transition: .3s ease-out
 
 .about-holder-hidden
   max-height: 0
+  width: 30px
   opacity: 0
   padding: 0
+  font-size: 0
 
-.about-toggle-off
+.about-toggle-on
   filter: brightness(0.5)
   transition: .2s
+.about-toggle-0ff
+  //@TODO change ? to x
 
 .about-toggle
   user-select: none
-  width: 16px
-  height: 16px
-  margin-top: 1px
-  background: #9E1941
-  color: #FFF5F5
-  border-radius: 4px
-  font-size: 14px
-  margin-left: 2px
-  line-height: 16px
+  width: $def-size
+  height: $def-size
+  background: $elem-default-bcolor
+  color: $elem-default-color
+  border-radius: $border-rad
+  font-size: $sec-text-size
+  line-height: $def-size
   text-align: center
-  margin-right: 2px
-  float: left
+  cursor: pointer
   transition:  .2s
 
   &:hover
-    background: #8A1236
-    color: #DED1D1
+    background: $elem-hover-bcolor
+    color: $elem-hover-color
 
   &:active
-    background: #85072C
-    color: #232329
+    background: $elem-active-bcolor
+    color: $elem-active-color

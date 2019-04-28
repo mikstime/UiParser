@@ -19,7 +19,7 @@ export default class ToggleAbout extends React.Component{
     }
 
     render() {
-        let style = !this.state.isToggleOn ? "about-toggle-off " : "";
+        let style = !this.state.isToggleOn ? "about-toggle-off " : "about-toggle-on ";
         style += 'about-toggle';
         return (
             <div className={style} onClick={this.toggle}>?</div>

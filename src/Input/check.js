@@ -12,7 +12,6 @@ export default class CheckInput extends React.Component {
             <div style={{marginBottom: "5px"}}>
                 <label className="text-name">{this.props.name}</label>
                     <input className="styled-checkbox" type="checkbox"/>
-                <br/>
             </div>
         )
     }

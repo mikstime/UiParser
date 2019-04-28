@@ -17,9 +17,10 @@ const constructors = {
     "input/slider" : SliderDefault,
     "input/check" : CheckInput
 }
+
 //******************************************************************************
 // Descriptor format :
-//  picker : [chosen constructor name, ... params] (or empty if not needed)
+//  picker : [chosen constructor name, ...params] (or empty if not needed)
 //  propName : name of the property
 //  about : description of the property (or nothing)
 //******************************************************************************

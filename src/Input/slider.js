@@ -9,13 +9,8 @@ export default class SliderDefault extends React.Component {
 
     render() {
         return(
-            <div style={{marginBottom:"5px"}}>
-                <p className="text-name">{this.props.name}
-                </p>
-                <div className={"slider-holder"}>
+            <div className={"input-default slider-holder"}>
                 <input className="slider" type="range"/>
-                </div>
-                <br/>
             </div>
         )
     }

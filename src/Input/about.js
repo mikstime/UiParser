@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import './css/about.sass';
 export default class About extends React.Component{
 
@@ -11,9 +11,7 @@ export default class About extends React.Component{
         style += this.props.isShown ? "" : " about-holder-hidden";
         return(
             <div className={style}>
-                <p>
                     {this.props.textValue}
-                </p>
             </div>
         );
     }
