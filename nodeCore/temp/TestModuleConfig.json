@@ -1,13 +1,23 @@
 {
-    "ModuleName" : "Temperature converter",
-    "constructor" :[
+    "ModuleName" : "Image Editor",
+    "UiConstructor" :[
       {
-        "picker" : ["input/slider"],
-        "propName" : ["Precision"],
-        "about" : "Temperature in degrees celsius to be converted in fahrenheit\n"
+        "propName" : ["Filters"],
+        "about" : "Specify filters to be used in filtering image",
+        "UiConstructor" : [
+          {
+            "propName" : "Greyscale",
+            "picker" : ["input/slider"],
+            "UiConstructor" : {
+              "propName" : "intensity",
+              "picker"  : "input/slider",
+              "about" : "Intensity of filter"
+            }
+          }
+        ]
       },
       {
-        "propName" : ["Temperature", ""],
+        "propName" : ["Temperature"],
         "picker" : ["input/text"],
         "about" : "Temperature in degrees celsius to be converted in fahrenheit\n"
       }

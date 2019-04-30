@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 // Base class
 import Tool from './Tool.js';
 // custom styles for element
-import './css/Decline.css'
+import './css/Decline.sass'
 // image to show as an icon
 import img from './svg/cancel.svg'
-export default class Apply extends Component {
+export default class Apply extends React.Component {
     // eslint-disable-next-line
     constructor(props) {
         super(props);
@@ -15,7 +15,7 @@ export default class Apply extends Component {
             <Tool
                 src={img}
                 className="Decline"
-                alt="V"
+                alt="X"
             />
         );
     }

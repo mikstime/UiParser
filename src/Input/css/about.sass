@@ -3,31 +3,31 @@
   color: $additional-color
   font-size: $sec-text-size
   max-height: 70px
-  width: 100%
   margin-left: $indent-default
-  transition: .3s ease-out
+  transition: .2s ease-out
 
 .about-holder-hidden
   max-height: 0
-  width: 30px
+  //width: 30px
   opacity: 0
   padding: 0
   font-size: 0
 
 .about-toggle-on
-  filter: brightness(0.5)
+  background: $elem-active-bcolor
+  color: $elem-active-color
   transition: .2s
-.about-toggle-0ff
-  //@TODO change ? to x
+  font-size: $sec-text-size * 0.9
 
+.about-toggle-off
+  background: $elem-default-bcolor
+  color: $elem-default-color
+  font-size: $sec-text-size * 0.9
 .about-toggle
   user-select: none
   width: $def-size
   height: $def-size
-  background: $elem-default-bcolor
-  color: $elem-default-color
   border-radius: $border-rad
-  font-size: $sec-text-size
   line-height: $def-size
   text-align: center
   cursor: pointer
@@ -40,3 +40,8 @@
   &:active
     background: $elem-active-bcolor
     color: $elem-active-color
+
+.about-no-toggle
+  width: $def-size
+  height: $def-size
+  background: none

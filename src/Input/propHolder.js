@@ -12,6 +12,7 @@ import About from './about';
 import PropName from './propName';
 import ToggleAbout from "./toggleAbout";
 //@TODO replace this with loadable constructors
+//@TODO block input on accept click
 const constructors = {
     "input/text" : TextInput,
     "input/slider" : SliderDefault,
@@ -25,10 +26,7 @@ const constructors = {
 //  about : description of the property (or nothing)
 //******************************************************************************
 export default class PropHolder extends React.Component{
-//@TODO align elems in vertically
-    //@TODO fix input width
-    //@TODO should make default input styles such as width and color
-    //@TODO fix overflow bug when input is blocked by previous module description
+
     constructor(props) {
         super(props);
         this.state = {aboutShown : false};
@@ -47,6 +45,7 @@ export default class PropHolder extends React.Component{
         
         return (
             <div className={"prop-holder"}>
+                <div className={"apply-name-holder"}>
                 {needAbout ?
                     <ToggleAbout
                     onToggle={this.onAboutToggle}
@@ -54,9 +53,7 @@ export default class PropHolder extends React.Component{
                     <div
                         style={
                             {
-                                float : 'left',
-                                height : '20px',
-                                width : '20px'
+                                width : '14px'
                             }
                         }
                     />
@@ -65,7 +62,8 @@ export default class PropHolder extends React.Component{
                     textValue={desc.propName[0]}
                     tags={desc.propName[1] || ""}
                 />
-                <Picker/>
+                </div>
+                <Picker needBlock={this.props.needBlock}/>
                 {needAbout && <About
                     isShown={this.state.aboutShown}
                     textValue={desc.about}/>

@@ -2,16 +2,19 @@
 .text-input
     color: $elem-default-color
     line-height: $def-size
-    border: none
     border-radius: $border-rad
     border-left: 2px solid $additional-bcolor
     border-right: 2px solid $additional-bcolor
+    border-bottom: 1px solid $additional-bcolor
+    border-top: 1px solid $additional-bcolor
     background: $additional-bcolor
-    height: $def-size
+    height: $def-size - 2
     text-indent: $indent-default
     transition: .2s
 
 .text-input:focus 
     outline: none
-    border-left: 2px solid $elem-default-bcolor
-    border-right: 2px solid $elem-default-bcolor
+    border-top: 1px solid $elem-default-bcolor
+    border-bottom: 1px solid $elem-default-bcolor
+    border-right: 2px solid $elem-active-bcolor
+    border-left: 2px solid $elem-active-bcolor

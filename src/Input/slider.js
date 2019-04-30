@@ -8,8 +8,9 @@ export default class SliderDefault extends React.Component {
     }
 
     render() {
+        const blockingStyle = this.props.needBlock ? 'input-block ' : '';
         return(
-            <div className={"input-default slider-holder"}>
+            <div className={blockingStyle + "input-default slider-holder"}>
                 <input className="slider" type="range"/>
             </div>
         )

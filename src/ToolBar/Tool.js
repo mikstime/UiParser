@@ -1,5 +1,5 @@
 import React from 'react';
-import './css/Tool.css';
+import './css/Tool.sass';
 export default class Tool extends React.Component{
     // eslint-disable-next-line
     constructor(props) {
@@ -8,7 +8,8 @@ export default class Tool extends React.Component{
 
     render() {
         return(
-            <div className={this.props.className}>
+            <div className={this.props.className}
+                 onClick={this.props.onClick}>
                 <div className={"Tool-body"}>
                     <div className="Mask">
                         <img className="Tool-img"
