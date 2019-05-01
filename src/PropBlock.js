@@ -9,6 +9,7 @@ import About from "./Input/about";
 import ToggleAbout from "./Input/toggleAbout";
 
 import uuid from 'uuid/v4'
+import PropHolderRecursive from "./PropHolderRecursive";
 
 export default class PropBlock extends React.Component{
 
@@ -19,7 +20,7 @@ export default class PropBlock extends React.Component{
         this.generatePropName = this.generatePropName.bind(this);
         this.generateAbout = this.generateAbout.bind(this);
         this.generatePicker = this.generatePicker.bind(this);
-        this.state = {domToRender : this.initProps(props.descriptor)};
+        // this.state = {domToRender : this.initProps(props.descriptor)};
     }
     //*************************************************************************
     // Descriptor format :
@@ -130,7 +131,7 @@ export default class PropBlock extends React.Component{
     render() {
         return(
             <Fragment>
-                {this.state.domToRender}
+                {<PropHolderRecursive descriptor={this.props.descriptor}/>}
             </Fragment>
         )
     }
