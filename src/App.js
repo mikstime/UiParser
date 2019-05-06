@@ -33,9 +33,7 @@ class App extends React.Component {
 
                 <ToolsHolder onAccept={this.onAccept}/>
                 <Header text={module.ModuleName}/>
-                <div className={"prop-block"}>
-                    <PropBlock descriptor={module}/>
-                </div>
+                <PropBlock descriptor={module}/>
             </div>
         );
     }

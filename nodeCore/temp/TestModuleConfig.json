@@ -7,12 +7,10 @@
         "UiConstructor" : [
           {
             "propName" : "Greyscale",
-            "picker" : ["input/slider"],
-            "UiConstructor" : {
-              "propName" : "intensity",
-              "picker"  : "input/slider",
-              "about" : "Intensity of filter"
-            }
+            "picker" : ["input/slider"]
+          },
+          {
+            "propName" : "Emphasize"
           }
         ]
       },

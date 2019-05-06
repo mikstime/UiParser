@@ -6,7 +6,7 @@ import TextInput from "./text";
 import SliderDefault from "./slider";
 import CheckInput from "./check";
 
-//@TODO loadd constructors dynamically
+//@TODO load constructors dynamically
 const constructors = {
     "input/text" : TextInput,
     "input/slider" : SliderDefault,

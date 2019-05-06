@@ -8,10 +8,18 @@ import PropName from "./Input/propName";
 import pickerList from "./Input/pickerList";
 import ToggleAbout from "./Input/toggleAbout";
 import About from "./Input/about";
-export default class PropHolderRecursive extends React.Component{
+import { toggleAbout } from "./reduxLogic/actions";
+import { connect } from "react-redux";
+function mapDispatchToProps(dispatch, ownProps) {
+    return {
+        toggleAbout: aboutObj => dispatch(toggleAbout(aboutObj))
+    };
+}
+class PropHolderRecursive extends React.Component{
 
     constructor(props) {
         super(props);
+        this.aboutId = uuid();
         // Store descriptor in state.
         this.state = {descriptor : props.descriptor}
     }
@@ -29,11 +37,7 @@ export default class PropHolderRecursive extends React.Component{
         }
         return false;
     };
-    validateDescriptor = descriptor => {
-        //@TODO add validation for other props
-        const isValidPropName = this.validatePropName(descriptor.propName);
-        return isValidPropName;
-    };
+
     getPropNameNode = propName => {
         if(typeof propName === 'string') {
             return <PropName textValue={propName}/>
@@ -46,14 +50,15 @@ export default class PropHolderRecursive extends React.Component{
         return <Fragment/>
     };
     getPropHolderNode = UiConstructor => {
+        const Node = connect(null, mapDispatchToProps)(PropHolderRecursive);
         if(UiConstructor instanceof Array) {
             return UiConstructor.map( desc =>
-                <PropHolderRecursive
+                <Node
                     key={uuid()}
                     descriptor={desc}
                 />)
         } else if(UiConstructor instanceof Object) {
-            return <PropHolderRecursive descriptor={UiConstructor}/>
+            return <Node descriptor={UiConstructor}/>
         }
         return <Fragment/>
     };
@@ -62,7 +67,7 @@ export default class PropHolderRecursive extends React.Component{
         if(picker instanceof Array) {
             const pickerSrc = typeof picker[0] === 'string' ?
                 picker.splice(0,1)[0].toLowerCase() : '';
-            const params = picker.filter(Number.isFinite);
+            //const params = picker.filter(Number.isFinite);
             const  ChosenPicker = pickerSrc in pickerList ?
                 pickerList[pickerSrc] : React.Fragment;
             pickerToExport = <ChosenPicker key={uuid()}/>;
@@ -74,31 +79,35 @@ export default class PropHolderRecursive extends React.Component{
                 pickerList[pickerSrc] : React.Fragment;
             pickerToExport = <ChosenPicker/>;
         } else {
-            //console.warn("Incorrect picker src was specified");
+            console.warn("Incorrect picker src was specified");
             pickerToExport = <Fragment/>;
         }
         return pickerToExport;
-    }
+    };
     getAboutNode = about => {
 
         if(typeof about === 'string') {
-            //@TODO add callback for showing about
-            return <About textValue ={about}/>
+            return <About id={this.aboutId}
+                          key={this.aboutId}
+                          textValue ={about}/>
         } else {
             return <Fragment/>;
         }
-    }
+    };
     getToggleAboutNode = about => {
         if(typeof about === 'string') {
-            //@TODO add callback for showing about
-            return <ToggleAbout/>
+            return <ToggleAbout
+                onToggle={this.onAboutToggle}/>
         } else {
             return <div className="about-no-toggle"/>;
         }
-    }
+    };
+    onAboutToggle = isToggleOn => {
+        this.props.toggleAbout({isToggleOn, aboutId : this.aboutId});
+    };
+
     render() {
         const descriptor = this.state.descriptor;
-        console.log(descriptor)
         const propName = descriptor.propName;
         const picker = descriptor.picker;
         const about = descriptor.about;
@@ -117,3 +126,6 @@ export default class PropHolderRecursive extends React.Component{
     }
 
 }
+
+PropHolderRecursive = connect(null, mapDispatchToProps)(PropHolderRecursive);
+export default PropHolderRecursive;

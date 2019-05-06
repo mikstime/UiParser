@@ -11,13 +11,9 @@ import CheckInput from "./check";
 import About from './about';
 import PropName from './propName';
 import ToggleAbout from "./toggleAbout";
-//@TODO replace this with loadable constructors
+
 //@TODO block input on accept click
-const constructors = {
-    "input/text" : TextInput,
-    "input/slider" : SliderDefault,
-    "input/check" : CheckInput
-}
+import constructors from './pickerList'
 
 //******************************************************************************
 // Descriptor format :

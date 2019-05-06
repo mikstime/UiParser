@@ -4,8 +4,7 @@
 
 import './css/about.sass';
 import React from 'react';
-
-export default class ToggleAbout extends React.Component{
+class ToggleAbout extends React.Component{
     constructor(props) {
         super(props);
         this.state = {isToggleOn: false};
@@ -29,3 +28,4 @@ export default class ToggleAbout extends React.Component{
     }
 
 }
+export default ToggleAbout;

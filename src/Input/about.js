@@ -1,6 +1,10 @@
 import React, {Fragment} from 'react';
 import './css/about.sass';
-export default class About extends React.Component{
+import { connect } from "react-redux";
+const mapStateToProps = state => {
+    return { isToggleOn : state.isToggleOn, aboutId : state.id};
+};
+class About extends React.Component{
 
     constructor(props) {
         super(props);
@@ -8,7 +12,7 @@ export default class About extends React.Component{
     }
     render() {
         let style = "about-holder";
-        style += this.props.isShown ? "" : " about-holder-hidden";
+        style += (this.props.isToggleOn.isToggleOn && this.props.isToggleOn.aboutId === this.props.id)? "" : " about-holder-hidden";
         return(
             <div className={style}>
                     {this.props.textValue}
@@ -16,3 +20,5 @@ export default class About extends React.Component{
         );
     }
 }
+
+export default connect(mapStateToProps)(About);

@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+import { Provider } from "react-redux";
+import store from "./reduxLogic/store";
 const { ipcRenderer } = window.require('electron');
-//@TODO parse json data through server
-//@TODO get rid of this
 
 ipcRenderer.send('ui-config-request', 'TestModule');
 ipcRenderer.once('ui-config-reply', function(event, args) {
 
-    ReactDOM.render(<App descriptor={JSON.stringify(args)}/>,
+    ReactDOM.render(
+        <Provider store={store}>
+            <App descriptor={JSON.stringify(args)}/>
+        </Provider>,
         document.getElementById('root'));
     serviceWorker.unregister();
 });
