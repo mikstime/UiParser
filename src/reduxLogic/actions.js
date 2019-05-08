@@ -8,3 +8,6 @@ export function toggleAbout(payload) {
 export function exportValues(payload) {
     return { type : "EXPORT_VALUES", payload }
 }
+export function pickerUpdated(payload) {
+    return { type : "PICKER_UPDATED", payload }
+}

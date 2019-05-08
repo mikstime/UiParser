@@ -3,7 +3,7 @@
 //******************************************************************************
 
 
-import { TOGGLE_ABOUT, EXPORT_VALUES } from "./actions-types";
+import { TOGGLE_ABOUT, EXPORT_VALUES, PICKER_UPDATED } from "./actions-types";
 
 const initialState = {
     isToggleOn : false
@@ -14,6 +14,7 @@ function rootReducer(state = initialState, action) {
             isToggleOn: action.payload
         });
         case EXPORT_VALUES : return Object.assign({}, state);
+        case PICKER_UPDATED : return Object.assign({}, state);
         default: return state;
     }
 

@@ -6,10 +6,6 @@ const mapStateToProps = state => {
 };
 class About extends React.Component{
 
-    constructor(props) {
-        super(props);
-
-    }
     render() {
         let style = "about-holder";
         style += (this.props.isToggleOn.isToggleOn && this.props.isToggleOn.aboutId === this.props.id)? "" : " about-holder-hidden";

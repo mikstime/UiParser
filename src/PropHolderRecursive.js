@@ -8,11 +8,11 @@ import PropName from "./Input/propName";
 import pickerList from "./Input/pickerList";
 import ToggleAbout from "./Input/toggleAbout";
 import About from "./Input/about";
-import { toggleAbout } from "./reduxLogic/actions";
+import { pickerUpdated } from "./reduxLogic/actions";
 import { connect } from "react-redux";
 function mapDispatchToProps(dispatch, ownProps) {
     return {
-        toggleAbout: aboutObj => dispatch(toggleAbout(aboutObj))
+        pickerUpdated: sliderVal => dispatch(pickerUpdated(sliderVal))
     };
 }
 class PropHolderRecursive extends React.Component{
@@ -20,8 +20,8 @@ class PropHolderRecursive extends React.Component{
     constructor(props) {
         super(props);
         this.aboutId = uuid();
-        // Store descriptor in state.
-        this.state = {descriptor : props.descriptor}
+        this.id = uuid();
+        this.propHolders = [];
     }
     validatePropName = propName => {
         if(propName instanceof Array) {
@@ -52,14 +52,16 @@ class PropHolderRecursive extends React.Component{
     getPropHolderNode = UiConstructor => {
         const Node = connect(null, mapDispatchToProps)(PropHolderRecursive);
         if(UiConstructor instanceof Array) {
-            return UiConstructor.map( desc =>
+            this.propHolders = UiConstructor.map( desc =>
                 <Node
                     inner={true}
                     key={uuid()}
                     descriptor={desc}
                 />)
+            return this.propHolders;
         } else if(UiConstructor instanceof Object) {
-            return <Node inner={true} descriptor={UiConstructor}/>
+            this.propHolders = [(<Node inner={true} descriptor={UiConstructor}/>)];
+            return this.propHolders;
         }
         return <Fragment/>
     };
@@ -98,17 +100,25 @@ class PropHolderRecursive extends React.Component{
     getToggleAboutNode = about => {
         if(typeof about === 'string') {
             return <ToggleAbout
+                aboutId={this.aboutId}
                 onToggle={this.onAboutToggle}/>
         } else {
             return <div className="about-no-toggle"/>;
         }
     };
-    onAboutToggle = isToggleOn => {
-        this.props.toggleAbout({isToggleOn, aboutId : this.aboutId});
-    };
+    exportToParent = (value) => {
 
-    render() {
         const descriptor = this.state.descriptor;
+        const propName = descriptor.propName;
+        const id = this.id;
+        return {
+            id,
+            propName,
+            value
+        }
+    };
+    render() {
+        const descriptor = this.props.descriptor;
         const propName = descriptor.propName;
         const picker = descriptor.picker;
         const about = descriptor.about;

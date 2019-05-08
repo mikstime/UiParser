@@ -4,6 +4,15 @@
 
 import './css/about.sass';
 import React from 'react';
+import {toggleAbout} from "../reduxLogic/actions";
+import {connect} from "react-redux";
+import PropHolderRecursive from "../PropHolderRecursive";
+
+function mapDispatchToProps(dispatch, ownProps) {
+    return {
+        toggleAbout: aboutObj => dispatch(toggleAbout(aboutObj)),
+    };
+}
 class ToggleAbout extends React.Component{
     constructor(props) {
         super(props);
@@ -13,10 +22,12 @@ class ToggleAbout extends React.Component{
 
     toggle() {
         this.setState((state) => ({isToggleOn: !state.isToggleOn}),
-            () => this.props.onToggle(this.state.isToggleOn)
+            () => this.onToggle(this.state.isToggleOn)
         )
     }
-
+    onToggle = isToggleOn => {
+        this.props.toggleAbout({isToggleOn, aboutId : this.props.aboutId});
+    };
     render() {
         let style = 'about-toggle ';
         style += this.state.isToggleOn ? "about-toggle-on " : "about-toggle-off ";
@@ -28,4 +39,5 @@ class ToggleAbout extends React.Component{
     }
 
 }
+ToggleAbout = connect(null, mapDispatchToProps)(ToggleAbout);
 export default ToggleAbout;
