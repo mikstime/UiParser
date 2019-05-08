@@ -4,4 +4,7 @@
 
 export function toggleAbout(payload) {
     return { type: "TOGGLE_ABOUT", payload }
-};
+}
+export function exportValues(payload) {
+    return { type : "EXPORT_VALUES", payload }
+}

@@ -54,11 +54,12 @@ class PropHolderRecursive extends React.Component{
         if(UiConstructor instanceof Array) {
             return UiConstructor.map( desc =>
                 <Node
+                    inner={true}
                     key={uuid()}
                     descriptor={desc}
                 />)
         } else if(UiConstructor instanceof Object) {
-            return <Node descriptor={UiConstructor}/>
+            return <Node inner={true} descriptor={UiConstructor}/>
         }
         return <Fragment/>
     };
@@ -111,16 +112,19 @@ class PropHolderRecursive extends React.Component{
         const propName = descriptor.propName;
         const picker = descriptor.picker;
         const about = descriptor.about;
-        const childNodes = descriptor.UiConstructor;
+        const UiConstructor = descriptor instanceof Array ? descriptor : descriptor.UiConstructor;
+        const InnerStyle = this.props.inner ? 'inner ' : '';
         return (
-            <div className="prop-holder">
-                <div className={"apply-name-holder"}>
+            <div className={"prop-holder" + InnerStyle}>
+                {propName &&
+                <div className={propName ? "apply-name-holder" : "no-name"}>
                     {this.getToggleAboutNode(about)}
                     {this.getPropNameNode(propName)}
-                </div>
+                </div>}
                 {this.getPickerNode(picker)}
                 {this.getAboutNode(about)}
-                {this.getPropHolderNode(childNodes)}
+                {this.getPropHolderNode(UiConstructor)}
+
             </div>
         )
     }

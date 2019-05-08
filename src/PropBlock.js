@@ -18,10 +18,12 @@ export default class PropBlock extends React.Component{
     //  e.g. ["input/text"]
     //*************************************************************************
     render() {
+        //@TODO fix styles
         return(
-            <Fragment>
-                {<PropHolderRecursive descriptor={this.props.descriptor}/>}
-            </Fragment>
+            <div className="prop-block">
+                {<PropHolderRecursive
+                    descriptor={this.props.descriptor.UiConstructor}/>}
+            </div>
         )
     }
 }

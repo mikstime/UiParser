@@ -18,6 +18,21 @@
         "propName" : ["Temperature"],
         "picker" : ["input/text"],
         "about" : "Temperature in degrees celsius to be converted in fahrenheit\n"
+      },
+      {
+        "propName" : ["Temperature"],
+        "picker" : ["input/text"],
+        "about" : "Temperature in degrees celsius to be converted in fahrenheit\n"
+      },
+      {
+        "propName" : ["Temperature"],
+        "picker" : ["input/text"],
+        "about" : "Temperature in degrees celsius to be converted in fahrenheit\n"
+      },
+      {
+        "propName" : ["Temperature"],
+        "picker" : ["input/text"],
+        "about" : "Temperature in degrees celsius to be converted in fahrenheit\n"
       }
 
     ]

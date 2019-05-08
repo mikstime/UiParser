@@ -3,18 +3,20 @@
 //******************************************************************************
 
 
-import { TOGGLE_ABOUT } from "./actions-types";
+import { TOGGLE_ABOUT, EXPORT_VALUES } from "./actions-types";
 
 const initialState = {
     isToggleOn : false
 };
 function rootReducer(state = initialState, action) {
-    if (action.type === TOGGLE_ABOUT) {
-        return Object.assign({}, state, {
+    switch (action.type) {
+        case TOGGLE_ABOUT : return Object.assign({}, state, {
             isToggleOn: action.payload
         });
+        case EXPORT_VALUES : return Object.assign({}, state);
+        default: return state;
     }
-    return state;
+
 }
 
 export default rootReducer;
