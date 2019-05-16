@@ -5,26 +5,27 @@
 import React, {Fragment} from 'react';
 import uuid from 'uuid/v4'
 import PropName from "./Input/propName";
+import './css/PropHolder.sass'
 import pickerList from "./Input/pickerList";
 import ToggleAbout from "./Input/toggleAbout";
 import About from "./Input/about";
 import { pickerUpdated } from "./reduxLogic/actions";
 import { connect } from "react-redux";
+import { ReactReduxContext } from 'react-redux'
 function mapDispatchToProps(dispatch, ownProps) {
     return {
-        pickerUpdated: sliderVal => dispatch(pickerUpdated(sliderVal))
     };
 }
-class PropHolderRecursive extends React.Component{
+class PropHolderRecursive extends React.Component {
 
     constructor(props) {
         super(props);
-        this.aboutId = uuid();
         this.id = uuid();
         this.propHolders = [];
     }
+
     validatePropName = propName => {
-        if(propName instanceof Array) {
+        if (propName instanceof Array) {
             // Array should have one or two elems in it.
             // Each of them is string.
             return 0 < propName.length &&
@@ -32,16 +33,16 @@ class PropHolderRecursive extends React.Component{
                 propName.reduce(
                     (p, c) => p += Number(typeof c === 'string'), 0
                 ) === propName.length;
-        } else if(typeof propName === 'string') {
+        } else if (typeof propName === 'string') {
             return true;
         }
         return false;
     };
 
     getPropNameNode = propName => {
-        if(typeof propName === 'string') {
+        if (typeof propName === 'string') {
             return <PropName textValue={propName}/>
-        } else if(propName instanceof Array) {
+        } else if (propName instanceof Array) {
             return <PropName
                 textValue={propName[0]}
                 tags={propName[1] || ''}
@@ -51,36 +52,49 @@ class PropHolderRecursive extends React.Component{
     };
     getPropHolderNode = UiConstructor => {
         const Node = connect(null, mapDispatchToProps)(PropHolderRecursive);
-        if(UiConstructor instanceof Array) {
-            this.propHolders = UiConstructor.map( desc =>
+        if (UiConstructor instanceof Array) {
+            this.propHolders = UiConstructor.map(desc =>
                 <Node
                     inner={true}
                     key={uuid()}
                     descriptor={desc}
                 />)
             return this.propHolders;
-        } else if(UiConstructor instanceof Object) {
-            this.propHolders = [(<Node inner={true} descriptor={UiConstructor}/>)];
+        } else if (UiConstructor instanceof Object) {
+            this.propHolders = [(<Node key={uuid()} inner={true} descriptor={UiConstructor}/>)];
             return this.propHolders;
         }
         return <Fragment/>
     };
     getPickerNode = picker => {
         let pickerToExport;
-        if(picker instanceof Array) {
+        if (picker instanceof Array) {
             const pickerSrc = typeof picker[0] === 'string' ?
-                picker.splice(0,1)[0].toLowerCase() : '';
-            //const params = picker.filter(Number.isFinite);
-            const  ChosenPicker = pickerSrc in pickerList ?
+                picker.splice(0, 1)[0].toLowerCase() : '';
+            const params = picker.filter(Number.isFinite);
+            const ChosenPicker = pickerSrc in pickerList ?
                 pickerList[pickerSrc] : React.Fragment;
-            pickerToExport = <ChosenPicker key={uuid()}/>;
+            pickerToExport = <ChosenPicker
+                key={uuid()}
+                params={params}
+                additionalData={
+                    {
+                        id: this.id,
+                        propName: this.props.descriptor.propName
+                    }
+                }/>;
 
-        } else  if(typeof picker === 'string')  {
+        } else if (typeof picker === 'string') {
             const pickerSrc = picker.toLowerCase();
 
-            const  ChosenPicker = pickerSrc in pickerList ?
+            const ChosenPicker = pickerSrc in pickerList ?
                 pickerList[pickerSrc] : React.Fragment;
-            pickerToExport = <ChosenPicker/>;
+            pickerToExport = <ChosenPicker additionalData={
+                {
+                    id: this.id,
+                    propName: this.props.descriptor.propName
+                }
+            }/>;
         } else {
             console.warn("Incorrect picker src was specified");
             pickerToExport = <Fragment/>;
@@ -89,43 +103,29 @@ class PropHolderRecursive extends React.Component{
     };
     getAboutNode = about => {
 
-        if(typeof about === 'string') {
-            return <About id={this.aboutId}
-                          key={this.aboutId}
-                          textValue ={about}/>
+        if (typeof about === 'string') {
+            return <About id={this.id} textValue={about}/>
         } else {
             return <Fragment/>;
         }
     };
     getToggleAboutNode = about => {
-        if(typeof about === 'string') {
-            return <ToggleAbout
-                aboutId={this.aboutId}
-                onToggle={this.onAboutToggle}/>
+        if (typeof about === 'string') {
+            return <ToggleAbout aboutId={this.id}/>
         } else {
             return <div className="about-no-toggle"/>;
         }
     };
-    exportToParent = (value) => {
 
-        const descriptor = this.state.descriptor;
-        const propName = descriptor.propName;
-        const id = this.id;
-        return {
-            id,
-            propName,
-            value
-        }
-    };
     render() {
         const descriptor = this.props.descriptor;
         const propName = descriptor.propName;
         const picker = descriptor.picker;
         const about = descriptor.about;
         const UiConstructor = descriptor instanceof Array ? descriptor : descriptor.UiConstructor;
-        const InnerStyle = this.props.inner ? 'inner ' : '';
+        const InnerStyle = this.props.inner ? 'inner' : '';
         return (
-            <div className={"prop-holder" + InnerStyle}>
+            <div className={"prop-holder " + InnerStyle}>
                 {propName &&
                 <div className={propName ? "apply-name-holder" : "no-name"}>
                     {this.getToggleAboutNode(about)}
@@ -134,11 +134,9 @@ class PropHolderRecursive extends React.Component{
                 {this.getPickerNode(picker)}
                 {this.getAboutNode(about)}
                 {this.getPropHolderNode(UiConstructor)}
-
             </div>
         )
     }
-
 }
 
 PropHolderRecursive = connect(null, mapDispatchToProps)(PropHolderRecursive);

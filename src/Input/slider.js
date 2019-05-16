@@ -1,29 +1,42 @@
 import React, {Fragment} from 'react'
 import './css/slider.sass'
 import './css/text.sass'
-import {connect} from "react-redux";
-const mapStateToProps = state => {
-    return { isToggleOn : state.isToggleOn, aboutId : state.id};
-};
+import {connect, ReactReduxContext} from "react-redux";
+import {pickerUpdated} from "../reduxLogic/actions";
+
+function mapDispatchToProps(dispatch, ownProps) {
+    return {
+        pickerUpdated: aboutObj => dispatch(pickerUpdated(aboutObj)),
+    };
+}
 class SliderDefault extends React.Component {
     // eslint-disable-next-line
     constructor(props) {
         super(props);
+        this.min = props.params[0] || 0;
+        this.max = props.params[1] || 1;
+        this.step = props.params[2] || 0.001;
     }
     updateValue = (value) => {
-        //@TODO export value from slider
-        //@TODO not just random number
-        console.log(value)
-        //this.props.
+        const res = {...this.props.additionalData, value : Math.random()};
+        this.props.pickerUpdated(res);
     }
     render() {
+        console.log(this.props.params)
         const blockingStyle = this.props.needBlock ? 'input-block ' : '';
         return(
             <div className={blockingStyle + "input-default slider-holder"}>
-                <input className="slider" type="range" onChange={this.updateValue}/>
+                <input min={this.min}
+                       max={this.max}
+                       step={this.step}
+                       className="slider"
+                       type="range"
+                       onChange={this.updateValue}/>
             </div>
+
         )
     }
 }
 
-export default connect(mapStateToProps)(SliderDefault);
+SliderDefault = connect(null, mapDispatchToProps)(SliderDefault);
+export default SliderDefault

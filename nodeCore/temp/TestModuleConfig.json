@@ -1,39 +1,24 @@
 {
-    "ModuleName" : "Image Editor",
+    "ModuleName" : "Filter Editor",
     "UiConstructor" :[
       {
-        "propName" : ["Filters"],
-        "about" : "Specify filters to be used in filtering image",
+        "propName" : ["Gaussian filter"],
+        "about" : "Add blur to image",
         "UiConstructor" : [
           {
-            "propName" : "Greyscale",
-            "picker" : ["input/slider"]
-          },
-          {
-            "propName" : "Emphasize"
+            "propName" : "radius",
+            "picker" : ["input/slider", 1, 30, 2]
           }
         ]
       },
       {
-        "propName" : ["Temperature"],
-        "picker" : ["input/text"],
-        "about" : "Temperature in degrees celsius to be converted in fahrenheit\n"
-      },
-      {
-        "propName" : ["Temperature"],
-        "picker" : ["input/text"],
-        "about" : "Temperature in degrees celsius to be converted in fahrenheit\n"
-      },
-      {
-        "propName" : ["Temperature"],
-        "picker" : ["input/text"],
-        "about" : "Temperature in degrees celsius to be converted in fahrenheit\n"
-      },
-      {
-        "propName" : ["Temperature"],
-        "picker" : ["input/text"],
-        "about" : "Temperature in degrees celsius to be converted in fahrenheit\n"
+        "propName" : "Grayscale filter",
+        "about" : "Make image grayscale",
+        "UiConstructor" : {
+          "propName" : "intensity",
+          "picker" : ["input/slider",0,1,0.001],
+          "about" : "Defines how close to gray pixels would be"
+        }
       }
-
     ]
 }

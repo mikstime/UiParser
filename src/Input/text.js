@@ -2,19 +2,27 @@ import React, {Fragment} from 'react'
 import './css/text.sass'
 import './css/input-default.sass'
 import uuid from 'uuid/v4'
-export default class TextInput extends React.Component {
+
+import {connect} from "react-redux";
+import {pickerUpdated} from "../reduxLogic/actions";
+
+function mapDispatchToProps(dispatch, ownProps) {
+    return {
+        pickerUpdated: pickerVal => dispatch(pickerUpdated(pickerVal)),
+    };
+}
+
+class TextInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = {dataToExport : ''};
-        this.prepareDataToExport =  this.prepareDataToExport.bind(this)
-        this.exportData = this.exportData.bind(this)
     }
-    prepareDataToExport(event) {
-        this.setState({
-            dataToExport : event.target.value
-        })
-    }
+    updateValue = (e) => {
 
+        this.setState({dataToExport : e.target.value});
+        const res = {...this.props.additionalData, value : e.target.value};
+        this.props.pickerUpdated(res);
+    };
     render() {
         const blockingStyle = this.props.needBlock ? 'input-block ' : '';
         return(
@@ -22,11 +30,12 @@ export default class TextInput extends React.Component {
                 <input
                     className={blockingStyle + "input-default text-input"}
                     type="text"
-                    onChange={this.prepareDataToExport}/>
+                    onChange={this.updateValue}/>
+
             </React.Fragment>
         )
     }
-    exportData() {
-        return this.state
-    }
 }
+
+TextInput = connect(null, mapDispatchToProps)(TextInput);
+export default TextInput
