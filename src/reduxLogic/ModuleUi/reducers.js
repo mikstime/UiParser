@@ -3,7 +3,9 @@
 //******************************************************************************
 
 
-import { TOGGLE_ABOUT, EXPORT_VALUES, PICKER_UPDATED } from "./actions-types";
+import { TOGGLE_ABOUT,
+         EXPORT_VALUES,
+         PICKER_UPDATED } from "./actions-types";
 
 const initialState = {
     toggledAbouts : {},

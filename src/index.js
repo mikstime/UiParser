@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import './StartPage/index.css';
+import App from './StartPage/App';
+import * as serviceWorker from './ModuleUi/serviceWorker';
 
 import { Provider } from "react-redux";
 import store from "./reduxLogic/store";
@@ -13,7 +13,7 @@ ipcRenderer.once('ui-config-reply', function(event, args) {
 
     ReactDOM.render(
         <Provider store={store}>
-            <App descriptor={JSON.stringify(args)}/>
+            <App descriptor={args}/>
         </Provider>,
         document.getElementById('root'));
     serviceWorker.unregister();

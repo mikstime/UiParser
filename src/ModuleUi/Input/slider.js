@@ -2,7 +2,7 @@ import React, {Fragment} from 'react'
 import './css/slider.sass'
 import './css/text.sass'
 import {connect, ReactReduxContext} from "react-redux";
-import {pickerUpdated} from "../reduxLogic/actions";
+import {pickerUpdated} from "../../reduxLogic/ModuleUi/actions";
 
 function mapDispatchToProps(dispatch, ownProps) {
     return {

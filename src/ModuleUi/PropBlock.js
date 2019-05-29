@@ -2,7 +2,7 @@
 // Created by MBTSKY on 2019-04-30.
 //******************************************************************************
 
-import React, {Fragment} from 'react';
+import React from 'react';
 // React component for storing property name
 import PropHolderRecursive from "./PropHolderRecursive";
 

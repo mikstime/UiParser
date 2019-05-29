@@ -4,7 +4,7 @@ import './css/input-default.sass'
 import uuid from 'uuid/v4'
 
 import {connect} from "react-redux";
-import {pickerUpdated} from "../reduxLogic/actions";
+import {pickerUpdated} from "../../reduxLogic/ModuleUi/actions";
 
 function mapDispatchToProps(dispatch, ownProps) {
     return {

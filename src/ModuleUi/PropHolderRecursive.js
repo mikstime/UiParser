@@ -3,15 +3,15 @@
 //******************************************************************************
 
 import React, {Fragment} from 'react';
+import PropTypes from 'prop-types';
 import uuid from 'uuid/v4'
 import PropName from "./Input/propName";
 import './css/PropHolder.sass'
+//
 import pickerList from "./Input/pickerList";
 import ToggleAbout from "./Input/toggleAbout";
 import About from "./Input/about";
-import { pickerUpdated } from "./reduxLogic/actions";
 import { connect } from "react-redux";
-import { ReactReduxContext } from 'react-redux'
 function mapDispatchToProps(dispatch, ownProps) {
     return {
     };
@@ -20,7 +20,9 @@ class PropHolderRecursive extends React.Component {
 
     constructor(props) {
         super(props);
+        //this.id is used for authentication of this element
         this.id = uuid();
+        //contains list of child propHolders for rendering them
         this.propHolders = [];
     }
 
@@ -74,14 +76,12 @@ class PropHolderRecursive extends React.Component {
             const params = picker.filter(Number.isFinite);
             const ChosenPicker = pickerSrc in pickerList ?
                 pickerList[pickerSrc] : React.Fragment;
+
             pickerToExport = <ChosenPicker
                 key={uuid()}
                 params={params}
                 additionalData={
-                    {
-                        id: this.id,
-                        propName: this.props.descriptor.propName
-                    }
+                    { id: this.id, propName: this.props.descriptor.propName }
                 }/>;
 
         } else if (typeof picker === 'string') {
@@ -89,6 +89,7 @@ class PropHolderRecursive extends React.Component {
 
             const ChosenPicker = pickerSrc in pickerList ?
                 pickerList[pickerSrc] : React.Fragment;
+
             pickerToExport = <ChosenPicker additionalData={
                 {
                     id: this.id,
@@ -122,7 +123,9 @@ class PropHolderRecursive extends React.Component {
         const propName = descriptor.propName;
         const picker = descriptor.picker;
         const about = descriptor.about;
-        const UiConstructor = descriptor instanceof Array ? descriptor : descriptor.UiConstructor;
+        const UiConstructor = descriptor instanceof Array ?
+            descriptor : descriptor.UiConstructor;
+        // Add margin-left for inner element
         const InnerStyle = this.props.inner ? 'inner' : '';
         return (
             <div className={"prop-holder " + InnerStyle}>
@@ -140,4 +143,9 @@ class PropHolderRecursive extends React.Component {
 }
 
 PropHolderRecursive = connect(null, mapDispatchToProps)(PropHolderRecursive);
+PropHolderRecursive.propTypes = {
+    descriptor : PropTypes.exact({
+        about : PropTypes.string
+    })
+};
 export default PropHolderRecursive;

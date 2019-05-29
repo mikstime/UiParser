@@ -4,7 +4,7 @@
 
 import './css/about.sass';
 import React from 'react';
-import {toggleAbout} from "../reduxLogic/actions";
+import {toggleAbout} from "../../reduxLogic/ModuleUi/actions";
 import {connect} from "react-redux";
 
 function mapDispatchToProps(dispatch, ownProps) {
