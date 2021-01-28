@@ -38,7 +38,7 @@
     ]
   },
   "devDependencies": {
-    "electron": "^4.1.4",
+    "electron": "^9.4.0",
     "react-redux": "^7.0.3",
     "redux": "^4.0.1"
   }
